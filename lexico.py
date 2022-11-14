@@ -106,7 +106,7 @@ t_NEGATION=r'-$.'
 t_ADDITION=r'\+'
 t_SUBTRACTION = r'-'
 t_MULTIPLICATION = r'\*'
-t_DIVISION = r'\\'
+t_DIVISION = r'/'
 t_MODULO = r'%'
 t_EXPONENTIATION = r'\*\*'
 t_ECHO=r'echo'
@@ -133,6 +133,7 @@ t_FUNCTION = r'function'
 def t_newline(t):
   r'\n+'
   t.lexer.lineno += len(t.value)
+  
 
 
 t_ignore = ' \t'
@@ -142,6 +143,7 @@ t_ignore_COMMENT = r'\#.*|\/\/.*'
 def t_error(t):
   print("Illegal character '%s'" % t.value[0])
   t.lexer.skip(1)
+  
 
 
 lexer = lex.lex()
@@ -151,7 +153,7 @@ def getTokens(lexer):
   for tok in lexer:
     print(tok)
 
-script = open("algoritmo-pincay.txt")
+script = open("algoritmo_Vasconez.txt")
 lexer.input(script.read())
 
 while True:
