@@ -67,7 +67,9 @@ tokens = (
   'OPERADOR_DECREMENTO',
   'SINTAXIS_ARRAY',
   'OPERADOR_INCREMENTO',
-  'OPERADOR_CONCATENACION'
+  'OPERADOR_CONCATENACION',
+  'COMILLA_DOBLE',
+  'ARGUMENTO'
 )+tuple(reserved.values())
 
 t_STRING = r"'.[^'\n]*'"
@@ -75,7 +77,6 @@ t_INTEGER = r'\d+'
 t_FLOAT = r'(\.?\d*)\.(\d)+'
 t_BOOLEAN = r'true|TRUE|false|FALSE'
 t_NULL = r'null|NULL'
-t_VARIABLE = r'\${1,2}([a-z]+[\d]*)+'
 t_EQUAL = r'=' 
 t_PLUS_EQUAL = r'\+='
 t_CONCAT_EQUAL = r'\.='
@@ -122,12 +123,18 @@ t_OPERADOR_DECREMENTO = r'--'
 t_SINTAXIS_ARRAY = r'=>'
 t_OPERADOR_INCREMENTO = r'\+\+'
 t_OPERADOR_CONCATENACION = r'\.'
-t_IF = r'if'
-t_ELSE = r'else'
-t_WHILE = r'while'
-t_FOR = r'for'
-t_FUNCTION = r'function'
+t_COMILLA_DOBLE= r'"'
 
+def t_ARGUMENTO(t):
+  r'[a-zA-Z]+'
+  t.type=reserved.get(t.value,'ARGUMENTO')
+  return t
+
+
+def t_VARIABLE(t):
+  r'\${1,2}([a-z]+[\d]*)+'
+  t.type=reserved.get(t.value,'VARIABLE')
+  return t
 
 
 def t_newline(t):
