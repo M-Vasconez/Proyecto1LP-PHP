@@ -16,6 +16,11 @@ reserved = {
   'fgets':'FGETS',
   'fscanf':'FSCANF',
   'readline': 'READLINE',
+  'if':'IF',
+  'else':'ELSE',
+  'while':'WHILE',
+  'for':'FOR',
+  'function':'FUNCTION'
 }
 
 tokens = (
@@ -59,6 +64,10 @@ tokens = (
   'TAB_VERTICAL',
   'ESCAPE',
   'ADVANCE_PAGE',
+  'OPERADOR_DECREMENTO',
+  'SINTAXIS_ARRAY',
+  'OPERADOR_INCREMENTO',
+  'OPERADOR_CONCATENACION'
 )+tuple(reserved.values())
 
 t_STRING = r"'.[^'\n]*'"
@@ -109,6 +118,15 @@ t_WHITESPACE=r'\\t | \\r | \\n'
 t_TAB_VERTICAL = r'\\v'
 t_ESCAPE = r'\\e'
 t_ADVANCE_PAGE = r'\\f'
+t_OPERADOR_DECREMENTO = r'--'
+t_SINTAXIS_ARRAY = r'=>'
+t_OPERADOR_INCREMENTO = r'\+\+'
+t_OPERADOR_CONCATENACION = r'\.'
+t_IF = r'if'
+t_ELSE = r'else'
+t_WHILE = r'while'
+t_FOR = r'for'
+t_FUNCTION = r'function'
 
 
 
