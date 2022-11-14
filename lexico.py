@@ -3,7 +3,6 @@ import ply.lex as lex
 #LENGUAJE PHP
 
 reserved = {
-  'echo':'ECHO',
   'and':'AND',
   'or':'OR',
   'xor':'XOR',
@@ -11,7 +10,12 @@ reserved = {
   'setSize':'SETSIZE', 
   'SpleDoublyLinkedList': 'SPLEDOUBLYLINKEDLIST', 
   'push': 'PUSH', 
-  'new': 'NEW' 
+  'new': 'NEW' ,
+  'echo':'ECHO',
+  'print':'PRINT',
+  'fgets':'FGETS',
+  'fscanf':'FSCANF',
+  'readline': 'READLINE',
 }
 
 tokens = (
@@ -32,6 +36,29 @@ tokens = (
   'LKEY',
   'RKEY',
   'ENDLINE',
+  'IS_EQUAL',
+  'IS_GREATER_OR_EQUAL',
+  'IS_NOT_EQUAL',
+  'IS_SMALLER_OR_EQUAL',
+  'IS_GREATER',
+  'IS_SMALLER',
+  'IDENTITY',
+  'NEGATION',
+  'ADDITION',
+  'SUBTRACTION',
+  'MULTIPLICATION',
+  'DIVISION',
+  'MODULO',
+  'EXPONENTIATION',
+  'ECHO',
+  'PRINT',
+  'FGETS',
+  'FSCANF',
+  'READLINE',
+  'WHITESPACE',
+  'TAB_VERTICAL',
+  'ESCAPE',
+  'ADVANCE_PAGE',
 )+tuple(reserved.values())
 
 t_STRING = r"'.[^'\n]*'"
@@ -59,7 +86,30 @@ t_SPLEDOUBLYLINKEDLIST = r'SpleDoublyLinkedList'
 t_PUSH = r'push'
 t_NEW = r'new'
 t_ENDLINE = r';'
-t_ECHO = r'echo'
+t_IS_EQUAL = r'=='
+t_IS_GREATER_OR_EQUAL = r'>='
+t_IS_NOT_EQUAL = r'!='
+t_IS_SMALLER_OR_EQUAL = r'<='
+t_IS_GREATER= r'>'
+t_IS_SMALLER = r'<'
+t_IDENTITY=r'\+$.'
+t_NEGATION=r'-$.'
+t_ADDITION=r'\+'
+t_SUBTRACTION = r'-'
+t_MULTIPLICATION = r'\*'
+t_DIVISION = r'\\'
+t_MODULO = r'%'
+t_EXPONENTIATION = r'\*\*'
+t_ECHO=r'echo'
+t_PRINT=r'print'
+t_FGETS=r'fgets'
+t_FSCANF=r'fscanf'
+t_READLINE=r'readline'
+T_WHITESPACE=r'\\t | \\r | \\n'
+t_TAB_VERTICAL = r'\\v'
+t_ESCAPE = r'\\e'
+t_ADVANCE_PAGE = r'\\f'
+
 
 
 def t_newline(t):
