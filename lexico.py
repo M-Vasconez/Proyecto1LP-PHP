@@ -17,6 +17,7 @@ reserved = {
   'fgets':'FGETS',
   'fscanf':'FSCANF',
   'readline': 'READLINE',
+  #Bryan Segovia
   'if':'IF',
   'else':'ELSE',
   'while':'WHILE',
@@ -65,6 +66,7 @@ tokens = (
   'TAB_VERTICAL',
   'ESCAPE',
   'ADVANCE_PAGE',
+  #Bryan Segovia
   'OPERADOR_DECREMENTO',
   'SINTAXIS_ARRAY',
   'OPERADOR_INCREMENTO',
@@ -125,18 +127,20 @@ t_WHITESPACE=r'\\t | \\r | \\n'
 t_TAB_VERTICAL = r'\\v'
 t_ESCAPE = r'\\e'
 t_ADVANCE_PAGE = r'\\f'
+#Bryan Segovia
 t_OPERADOR_DECREMENTO = r'--'
 t_SINTAXIS_ARRAY = r'=>'
 t_OPERADOR_INCREMENTO = r'\+\+'
 t_OPERADOR_CONCATENACION = r'\.'
 t_COMILLA_DOBLE= r'"'
 
+#Bryan Segovia
 def t_ARGUMENTO(t):
   r'[a-zA-Z]+'
   t.type=reserved.get(t.value,'ARGUMENTO')
   return t
 
-
+#Bryan Segovia
 def t_VARIABLE(t):
   r'\${1,2}([a-z]+[\d]*)+'
   t.type=reserved.get(t.value,'VARIABLE')
