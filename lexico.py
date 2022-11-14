@@ -3,6 +3,7 @@ import ply.lex as lex
 #LENGUAJE PHP
 
 reserved = {
+  # Leonardo Pincay
   'and':'AND',
   'or':'OR',
   'xor':'XOR',
@@ -24,6 +25,7 @@ reserved = {
 }
 
 tokens = (
+  # Leonardo Pincay
   'STRING',
   'INTEGER',
   'FLOAT',
@@ -41,6 +43,10 @@ tokens = (
   'LKEY',
   'RKEY',
   'ENDLINE',
+  'LBRACKET',
+  'RBRACKET',
+  'OPEN_TAG',
+  'CLOSE_TAG',
   'IS_EQUAL',
   'IS_GREATER_OR_EQUAL',
   'IS_NOT_EQUAL',
@@ -55,11 +61,6 @@ tokens = (
   'DIVISION',
   'MODULO',
   'EXPONENTIATION',
-  'ECHO',
-  'PRINT',
-  'FGETS',
-  'FSCANF',
-  'READLINE',
   'WHITESPACE',
   'TAB_VERTICAL',
   'ESCAPE',
@@ -72,6 +73,7 @@ tokens = (
   'ARGUMENTO'
 )+tuple(reserved.values())
 
+# Leonardo Pincay
 t_STRING = r"'.[^'\n]*'"
 t_INTEGER = r'\d+'
 t_FLOAT = r'(\.?\d*)\.(\d)+'
@@ -96,6 +98,10 @@ t_SPLEDOUBLYLINKEDLIST = r'SpleDoublyLinkedList'
 t_PUSH = r'push'
 t_NEW = r'new'
 t_ENDLINE = r';'
+t_LBRACKET = r'\['
+t_RBRACKET = r'\]'
+t_OPEN_TAG = r'<\?php'
+t_CLOSE_TAG = r'\?>'
 t_IS_EQUAL = r'=='
 t_IS_GREATER_OR_EQUAL = r'>='
 t_IS_NOT_EQUAL = r'!='
