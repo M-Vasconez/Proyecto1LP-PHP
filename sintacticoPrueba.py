@@ -5,14 +5,16 @@ def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
   | funcion
-  | estructuras_control
-  | bucles'''
+  | estructuras_control'''
 
+#Bryan Segovia
 def p_salida(p):
   "salida : ECHO valor ENDLINE"
 
+
+#Bryan Segovia
 def p_salida_print(p):
-  "salida : PRINT LPAREN valor RPAREN"
+  "salida : PRINT LPAREN valor RPAREN ENDLINE"
 
 def p_valor(p):
   '''valor : ARGUMENTO 
@@ -45,14 +47,18 @@ def p_operador_comparacion(p):
   | IS_SMALLER_OR_EQUAL
   | IS_GREATER
   | IS_SMALLER'''
+  
 
+#Bryan Segovia
+def p_operacion_comparacion(p):
+  'operacion_comparacion : VARIABLE operador_comparacion VARIABLE'
+  
 def p_estructuras_control(p):
   '''estructuras_control : if
-  | else'''
-  
-def p_bucles(p):
-  'bucles : while'
-  
+  | else 
+  | while 
+  | for'''
+   
 
 def p_if(p):
   'if : IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY '
@@ -82,6 +88,30 @@ def p_array(p):
   
 def p_funciones(p):
   'funciones : valor LPAREN valor RPAREN LKEY cuerpo RKEY'
+  
+#Bryan Segovia
+def p_tipo_operador(p):
+  '''tipo_operador : ADDITION 
+  | SUBTRACTION 
+  | MULTIPLICATION 
+  | DIVISION 
+  | MODULO 
+  | EXPONENTIATION'''
+
+
+#Bryan Segovia Ej: $a++ $a=$a**3,  etc
+def p_forma_operacion(p):
+  '''forma_operacion : VARIABLE OPERADOR_INCREMENTO 
+  | OPERADOR_INCREMENTO VARIABLE 
+  | VARIABLE OPERADOR_DECREMENTO 
+  | OPERADOR_DECREMENTO VARIABLE 
+  | VARIABLE EQUAL VARIABLE tipo_operador INTEGER'''
+
+
+#Bryan Segovia
+def p_for(p):
+  'for : FOR LPAREN VARIABLE EQUAL INTEGER ENDLINE VARIABLE operador_comparacion INTEGER ENDLINE forma_operacion RPAREN LKEY cuerpo RKEY'  
+  
 
 def p_error(p):
   if p:
