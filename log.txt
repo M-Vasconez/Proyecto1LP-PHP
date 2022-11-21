@@ -22,3 +22,9 @@ while(true){ print("Test"); }
 $a += $b
 $a .= $b
 
+#Pruebas para funcion
+function foo($var1) {
+    $a = 24 >= 89;
+    print($a);
+}
+
