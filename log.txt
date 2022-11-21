@@ -1,0 +1,11 @@
+#Prueba para el bucle for
+for($i=1;$i<=11;$i++){$hola='Hola mundo';}
+
+#Prueba para salida por echo
+echo 'Hola Mundo xd';
+
+#Prueba para salida por print
+print(18);
+
+#Prueba para comparacion de variables
+$var1 >= $var2
