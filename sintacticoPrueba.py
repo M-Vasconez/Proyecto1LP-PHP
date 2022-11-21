@@ -1,13 +1,14 @@
-from lexicoSegovia import tokens
+from lexico import tokens
 import ply.yacc as yacc
 
 def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
-  | funcion'''
+  | funcion
+  | estructuras_control'''
 
 def p_salida(p):
-  "salida : ECHO COMILLA_DOBLE valor COMILLA_DOBLE ENDLINE"
+  "salida : ECHO valor ENDLINE"
 
 def p_salida_print(p):
   "salida : PRINT LPAREN valor RPAREN"
@@ -16,13 +17,37 @@ def p_valor(p):
   '''valor : ARGUMENTO 
   | INTEGER 
   | FLOAT 
-  | BOOLEAN'''
-
-def p_asignacion(p):
-  'asignacion : VARIABLE EQUAL valor ENDLINE'
+  | BOOLEAN
+  | STRING
+  | VARIABLE'''
 
 def p_funcion(p):
   'funcion : FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY'
+
+def p_asignacion(p):
+  'asignacion : VARIABLE operador_asignacion valor ENDLINE'
+
+def p_operador_asignacion(p):
+  '''operador_asignacion : EQUAL
+  | PLUS_EQUAL
+  | CONCAT_EQUAL'''
+
+def p_estructuras_control(p):
+  '''estructuras_control : if
+  | else'''
+
+def p_if(p):
+  'if : IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY '
+
+def p_else(p):
+  'else : if ELSE LKEY cuerpo RKEY'
+
+def p_expresion_logica(p):
+  #cambiar AND y OR por operador logico y de comparacion
+  '''expresion_logica : BOOLEAN
+  | valor AND valor
+  | valor OR valor
+  '''
 
 def p_error(p):
   if p:
@@ -45,28 +70,3 @@ while True:
     break
   if not s: continue
   validaRegla(s)
-
-'''import sintactico
-
-while True:
-  try:
-    s = input('calc > ')
-  except EOFError:
-    break
-  if not s: continue
-  sintactico.validaRegla(s)
-
-Ejemplos que por ahora puede validar
-a=20
-variable=30.2
-imprimir(var)
-imprimir(20.3)
-'''
-
-'''
-Para practicar implemente las siguientes reglas:
-a=30+23
-var=20-310*292/23
-cond=20>variable
-if var>10: imprimir(True)
-'''

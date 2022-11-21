@@ -138,6 +138,7 @@ t_COMILLA_DOBLE= r'"'
 def t_ARGUMENTO(t):
   r'[a-zA-Z]+'
   t.type=reserved.get(t.value,'ARGUMENTO')
+  t.type = reserved.get(t.value, 'BOOLEAN')
   return t
 
 #Bryan Segovia
