@@ -17,5 +17,6 @@ fgets();
 fscanf();
 readline();
 
+while( 9==9 ):
 
 

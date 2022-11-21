@@ -33,6 +33,14 @@ def p_operador_asignacion(p):
   | PLUS_EQUAL
   | CONCAT_EQUAL'''
 
+def p_operador_comparacion(p):
+  '''operador_comparacion : IS_EQUAL
+  | IS_GREATER_OR_EQUAL
+  | IS_NOT_EQUAL
+  | IS_SMALLER_OR_EQUAL
+  | IS_GREATER
+  | IS_SMALLER'''
+
 def p_estructuras_control(p):
   '''estructuras_control : if
   | else'''
@@ -55,7 +63,7 @@ def p_expresion_logica(p):
   '''
 
 def p_while(p):
-  'while : WHILE LPAREN expresion_logica RPAREN COLON'
+  'while : WHILE LPAREN valor operador_comparacion valor RPAREN COLON'
 
 def p_error(p):
   if p:
