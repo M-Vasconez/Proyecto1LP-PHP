@@ -48,6 +48,7 @@ tokens = (
   'RBRACKET',
   'OPEN_TAG',
   'CLOSE_TAG',
+  'COMA',
   #Matias Vasconez
   'IS_EQUAL',
   'IS_GREATER_OR_EQUAL',
@@ -106,6 +107,7 @@ t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_OPEN_TAG = r'<\?php'
 t_CLOSE_TAG = r'\?>'
+t_COMA = r','
 #Matias Vasconez
 t_IS_EQUAL = r'=='
 t_IS_GREATER_OR_EQUAL = r'>='

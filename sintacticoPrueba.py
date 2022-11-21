@@ -32,6 +32,9 @@ def p_funcion(p):
 def p_asignacion(p):
   'asignacion : VARIABLE operador_asignacion valor ENDLINE'
 
+def p_asignacion_expresion(p):
+  'asignacion : VARIABLE operador_asignacion expresion ENDLINE'
+
 def p_operador_asignacion(p):
   '''operador_asignacion : EQUAL
   | PLUS_EQUAL
@@ -61,21 +64,63 @@ def p_estructuras_control(p):
    
 
 def p_if(p):
-  'if : IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY '
+  'if : IF LPAREN expresiones_logicas RPAREN LKEY cuerpo RKEY '
 
 def p_else(p):
   'else : if ELSE LKEY cuerpo RKEY'
 
-def p_expresion_logica(p):
-  #cambiar AND y OR por operador logico y de comparacion
-  '''expresion_logica : BOOLEAN
-  | valor AND valor
-  | valor OR valor
-  | valor XOR valor
-  | NOT valor
-  | valor BOOLEAN_AND valor
-  | valor BOOLEAN_OR valor
+def p_expresion(p):
+  '''expresion : expresiones_logicas 
+  | expresiones_aritmeticas
   '''
+
+
+def p_expresion_logica(p):
+  '''expresion_logica : BOOLEAN
+  | valor operador_comparacion valor
+  | valor operador_logico valor
+  '''
+
+def p_expresiones_logicas(p):
+  '''expresiones_logicas : expresion_logica 
+  | expresion_logica operador_comparacion expresiones_logicas
+  '''
+
+
+def p_operador_aritmetico(p):
+  '''operador_aritmetico : ADDITION
+  | SUBTRACTION
+  | MULTIPLICATION
+  | DIVISION
+  | MODULO
+  | EXPONENTIATION
+  '''
+
+def p_operador_logico(p):
+  '''operador_logico : BOOLEAN_AND 
+  | BOOLEAN_OR 
+  | AND 
+  | OR 
+  | XOR 
+  '''
+
+def p_expresion_aritmetica(p):
+  'expresion_aritmetica : valor operador_aritmetico valor'
+  
+
+def p_expresiones_aritmeticas(p):
+  '''expresiones_aritmeticas : expresion_aritmetica 
+  | expresion_aritmetica operador_aritmetico expresiones_aritmeticas
+  '''
+
+def p_lectura(p):
+  'lectura : FSCANF LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
+
+def p_lectura(p):
+  'lectura : FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
+
+def p_lectura(p):
+  'lectura : FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
 
 def p_while_v1(p):
   'while : WHILE LPAREN valor operador_comparacion valor RPAREN COLON cuerpo'
