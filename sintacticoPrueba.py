@@ -20,7 +20,9 @@ def p_valor(p):
   | FLOAT 
   | BOOLEAN
   | STRING
-  | VARIABLE'''
+  | VARIABLE
+  | estructuras_datos
+  | funciones'''
 
 def p_funcion(p):
   'funcion : FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY'
@@ -32,6 +34,9 @@ def p_operador_asignacion(p):
   '''operador_asignacion : EQUAL
   | PLUS_EQUAL
   | CONCAT_EQUAL'''
+  
+def p_estructuras_datos(p):
+  'estructuras_datos : array'
 
 def p_operador_comparacion(p):
   '''operador_comparacion : IS_EQUAL
@@ -45,7 +50,7 @@ def p_estructuras_control(p):
   '''estructuras_control : if
   | else'''
   
-def p_bucle(p):
+def p_bucles(p):
   'bucles : while'
   
 
@@ -60,10 +65,23 @@ def p_expresion_logica(p):
   '''expresion_logica : BOOLEAN
   | valor AND valor
   | valor OR valor
+  | valor XOR valor
+  | NOT valor
+  | valor BOOLEAN_AND valor
+  | valor BOOLEAN_OR valor
   '''
 
-def p_while(p):
-  'while : WHILE LPAREN valor operador_comparacion valor RPAREN COLON'
+def p_while_v1(p):
+  'while : WHILE LPAREN valor operador_comparacion valor RPAREN COLON cuerpo'
+  
+def p_while_v2(p):
+  'while : WHILE LPAREN valor operador_comparacion valor RPAREN LKEY TAB_VERTICAL cuerpo RKEY'
+
+def p_array(p):
+  'array : LBRACKET valor RBRACKET'
+  
+def p_funciones(p):
+  'funciones : valor LPAREN valor RPAREN LKEY cuerpo RKEY'
 
 def p_error(p):
   if p:

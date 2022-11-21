@@ -171,15 +171,15 @@ def t_error(t):
 lexer = lex.lex()
 
 
-def getTokens(lexer):
-  for tok in lexer:
-    print(tok)
+# def getTokens(lexer):
+#   for tok in lexer:
+#     print(tok)
 
-script = open("algoritmo_Vasconez.txt")
-lexer.input(script.read())
+# script = open("algoritmo_Vasconez.txt")
+# lexer.input(script.read())
 
-while True:
-  tok = lexer.token()
-  if not tok: 
-      break      
-  print(tok)
+# while True:
+#   tok = lexer.token()
+#   if not tok: 
+#       break      
+#   print(tok)
