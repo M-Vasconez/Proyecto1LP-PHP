@@ -48,12 +48,14 @@ tokens = (
   'RBRACKET',
   'OPEN_TAG',
   'CLOSE_TAG',
+  #Matias Vasconez
   'IS_EQUAL',
   'IS_GREATER_OR_EQUAL',
   'IS_NOT_EQUAL',
   'IS_SMALLER_OR_EQUAL',
   'IS_GREATER',
   'IS_SMALLER',
+  'COLON',
   'IDENTITY',
   'NEGATION',
   'ADDITION',
@@ -104,12 +106,14 @@ t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_OPEN_TAG = r'<\?php'
 t_CLOSE_TAG = r'\?>'
+#Matias Vasconez
 t_IS_EQUAL = r'=='
 t_IS_GREATER_OR_EQUAL = r'>='
 t_IS_NOT_EQUAL = r'!='
 t_IS_SMALLER_OR_EQUAL = r'<='
 t_IS_GREATER= r'>'
 t_IS_SMALLER = r'<'
+t_COLON = r'\:'
 t_IDENTITY=r'\+$.'
 t_NEGATION=r'-$.'
 t_ADDITION=r'\+'

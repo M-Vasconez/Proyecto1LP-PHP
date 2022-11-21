@@ -1,0 +1,813 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADDITION
+    ADVANCE_PAGE
+    BOOLEAN_AND
+    BOOLEAN_OR
+    CLOSE_TAG
+    COLON
+    COMILLA_DOBLE
+    DIVISION
+    ESCAPE
+    EXPONENTIATION
+    FGETS
+    FOR
+    FSCANF
+    IDENTITY
+    IS_EQUAL
+    IS_GREATER
+    IS_GREATER_OR_EQUAL
+    IS_NOT_EQUAL
+    IS_SMALLER
+    IS_SMALLER_OR_EQUAL
+    LBRACKET
+    MODULO
+    MULTIPLICATION
+    NEGATION
+    NEW
+    NOT
+    NULL
+    OPEN_TAG
+    OPERADOR_CONCATENACION
+    OPERADOR_DECREMENTO
+    OPERADOR_INCREMENTO
+    PUSH
+    RBRACKET
+    READLINE
+    SETSIZE
+    SINTAXIS_ARRAY
+    SPLEDOUBLYLINKEDLIST
+    SPLFIXEDARRAY
+    SUBTRACTION
+    TAB_VERTICAL
+    WHITESPACE
+    XOR
+
+Grammar
+
+Rule 0     S' -> cuerpo
+Rule 1     cuerpo -> salida
+Rule 2     cuerpo -> asignacion
+Rule 3     cuerpo -> funcion
+Rule 4     cuerpo -> estructuras_control
+Rule 5     cuerpo -> bucles
+Rule 6     salida -> ECHO valor ENDLINE
+Rule 7     salida -> PRINT LPAREN valor RPAREN
+Rule 8     valor -> ARGUMENTO
+Rule 9     valor -> INTEGER
+Rule 10    valor -> FLOAT
+Rule 11    valor -> BOOLEAN
+Rule 12    valor -> STRING
+Rule 13    valor -> VARIABLE
+Rule 14    funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+Rule 15    asignacion -> VARIABLE operador_asignacion valor ENDLINE
+Rule 16    operador_asignacion -> EQUAL
+Rule 17    operador_asignacion -> PLUS_EQUAL
+Rule 18    operador_asignacion -> CONCAT_EQUAL
+Rule 19    estructuras_control -> if
+Rule 20    estructuras_control -> else
+Rule 21    bucles -> while
+Rule 22    if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY
+Rule 23    else -> if ELSE LKEY cuerpo RKEY
+Rule 24    expresion_logica -> BOOLEAN
+Rule 25    expresion_logica -> valor AND valor
+Rule 26    expresion_logica -> valor OR valor
+Rule 27    while -> WHILE LPAREN expresion_logica RPAREN
+
+Terminals, with rules where they appear
+
+ADDITION             : 
+ADVANCE_PAGE         : 
+AND                  : 25
+ARGUMENTO            : 8 14 14
+BOOLEAN              : 11 24
+BOOLEAN_AND          : 
+BOOLEAN_OR           : 
+CLOSE_TAG            : 
+COLON                : 
+COMILLA_DOBLE        : 
+CONCAT_EQUAL         : 18
+DIVISION             : 
+ECHO                 : 6
+ELSE                 : 23
+ENDLINE              : 6 15
+EQUAL                : 16
+ESCAPE               : 
+EXPONENTIATION       : 
+FGETS                : 
+FLOAT                : 10
+FOR                  : 
+FSCANF               : 
+FUNCTION             : 14
+IDENTITY             : 
+IF                   : 22
+INTEGER              : 9
+IS_EQUAL             : 
+IS_GREATER           : 
+IS_GREATER_OR_EQUAL  : 
+IS_NOT_EQUAL         : 
+IS_SMALLER           : 
+IS_SMALLER_OR_EQUAL  : 
+LBRACKET             : 
+LKEY                 : 14 22 23
+LPAREN               : 7 14 22 27
+MODULO               : 
+MULTIPLICATION       : 
+NEGATION             : 
+NEW                  : 
+NOT                  : 
+NULL                 : 
+OPEN_TAG             : 
+OPERADOR_CONCATENACION : 
+OPERADOR_DECREMENTO  : 
+OPERADOR_INCREMENTO  : 
+OR                   : 26
+PLUS_EQUAL           : 17
+PRINT                : 7
+PUSH                 : 
+RBRACKET             : 
+READLINE             : 
+RKEY                 : 14 22 23
+RPAREN               : 7 14 22 27
+SETSIZE              : 
+SINTAXIS_ARRAY       : 
+SPLEDOUBLYLINKEDLIST : 
+SPLFIXEDARRAY        : 
+STRING               : 12
+SUBTRACTION          : 
+TAB_VERTICAL         : 
+VARIABLE             : 13 14 15
+WHILE                : 27
+WHITESPACE           : 
+XOR                  : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 2
+bucles               : 5
+cuerpo               : 22 23 0
+else                 : 20
+estructuras_control  : 4
+expresion_logica     : 22 27
+funcion              : 3
+if                   : 19 23
+operador_asignacion  : 15
+salida               : 1
+valor                : 6 7 15 25 25 26 26
+while                : 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . cuerpo
+    (1) cuerpo -> . salida
+    (2) cuerpo -> . asignacion
+    (3) cuerpo -> . funcion
+    (4) cuerpo -> . estructuras_control
+    (5) cuerpo -> . bucles
+    (6) salida -> . ECHO valor ENDLINE
+    (7) salida -> . PRINT LPAREN valor RPAREN
+    (15) asignacion -> . VARIABLE operador_asignacion valor ENDLINE
+    (14) funcion -> . FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+    (19) estructuras_control -> . if
+    (20) estructuras_control -> . else
+    (21) bucles -> . while
+    (22) if -> . IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY
+    (23) else -> . if ELSE LKEY cuerpo RKEY
+    (27) while -> . WHILE LPAREN expresion_logica RPAREN
+
+    ECHO            shift and go to state 7
+    PRINT           shift and go to state 8
+    VARIABLE        shift and go to state 9
+    FUNCTION        shift and go to state 10
+    IF              shift and go to state 14
+    WHILE           shift and go to state 15
+
+    cuerpo                         shift and go to state 1
+    salida                         shift and go to state 2
+    asignacion                     shift and go to state 3
+    funcion                        shift and go to state 4
+    estructuras_control            shift and go to state 5
+    bucles                         shift and go to state 6
+    if                             shift and go to state 11
+    else                           shift and go to state 12
+    while                          shift and go to state 13
+
+state 1
+
+    (0) S' -> cuerpo .
+
+
+
+state 2
+
+    (1) cuerpo -> salida .
+
+    $end            reduce using rule 1 (cuerpo -> salida .)
+    RKEY            reduce using rule 1 (cuerpo -> salida .)
+
+
+state 3
+
+    (2) cuerpo -> asignacion .
+
+    $end            reduce using rule 2 (cuerpo -> asignacion .)
+    RKEY            reduce using rule 2 (cuerpo -> asignacion .)
+
+
+state 4
+
+    (3) cuerpo -> funcion .
+
+    $end            reduce using rule 3 (cuerpo -> funcion .)
+    RKEY            reduce using rule 3 (cuerpo -> funcion .)
+
+
+state 5
+
+    (4) cuerpo -> estructuras_control .
+
+    $end            reduce using rule 4 (cuerpo -> estructuras_control .)
+    RKEY            reduce using rule 4 (cuerpo -> estructuras_control .)
+
+
+state 6
+
+    (5) cuerpo -> bucles .
+
+    $end            reduce using rule 5 (cuerpo -> bucles .)
+    RKEY            reduce using rule 5 (cuerpo -> bucles .)
+
+
+state 7
+
+    (6) salida -> ECHO . valor ENDLINE
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    valor                          shift and go to state 16
+
+state 8
+
+    (7) salida -> PRINT . LPAREN valor RPAREN
+
+    LPAREN          shift and go to state 23
+
+
+state 9
+
+    (15) asignacion -> VARIABLE . operador_asignacion valor ENDLINE
+    (16) operador_asignacion -> . EQUAL
+    (17) operador_asignacion -> . PLUS_EQUAL
+    (18) operador_asignacion -> . CONCAT_EQUAL
+
+    EQUAL           shift and go to state 25
+    PLUS_EQUAL      shift and go to state 26
+    CONCAT_EQUAL    shift and go to state 27
+
+    operador_asignacion            shift and go to state 24
+
+state 10
+
+    (14) funcion -> FUNCTION . ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+
+    ARGUMENTO       shift and go to state 28
+
+
+state 11
+
+    (19) estructuras_control -> if .
+    (23) else -> if . ELSE LKEY cuerpo RKEY
+
+    $end            reduce using rule 19 (estructuras_control -> if .)
+    RKEY            reduce using rule 19 (estructuras_control -> if .)
+    ELSE            shift and go to state 29
+
+
+state 12
+
+    (20) estructuras_control -> else .
+
+    $end            reduce using rule 20 (estructuras_control -> else .)
+    RKEY            reduce using rule 20 (estructuras_control -> else .)
+
+
+state 13
+
+    (21) bucles -> while .
+
+    $end            reduce using rule 21 (bucles -> while .)
+    RKEY            reduce using rule 21 (bucles -> while .)
+
+
+state 14
+
+    (22) if -> IF . LPAREN expresion_logica RPAREN LKEY cuerpo RKEY
+
+    LPAREN          shift and go to state 30
+
+
+state 15
+
+    (27) while -> WHILE . LPAREN expresion_logica RPAREN
+
+    LPAREN          shift and go to state 31
+
+
+state 16
+
+    (6) salida -> ECHO valor . ENDLINE
+
+    ENDLINE         shift and go to state 32
+
+
+state 17
+
+    (8) valor -> ARGUMENTO .
+
+    ENDLINE         reduce using rule 8 (valor -> ARGUMENTO .)
+    RPAREN          reduce using rule 8 (valor -> ARGUMENTO .)
+    AND             reduce using rule 8 (valor -> ARGUMENTO .)
+    OR              reduce using rule 8 (valor -> ARGUMENTO .)
+
+
+state 18
+
+    (9) valor -> INTEGER .
+
+    ENDLINE         reduce using rule 9 (valor -> INTEGER .)
+    RPAREN          reduce using rule 9 (valor -> INTEGER .)
+    AND             reduce using rule 9 (valor -> INTEGER .)
+    OR              reduce using rule 9 (valor -> INTEGER .)
+
+
+state 19
+
+    (10) valor -> FLOAT .
+
+    ENDLINE         reduce using rule 10 (valor -> FLOAT .)
+    RPAREN          reduce using rule 10 (valor -> FLOAT .)
+    AND             reduce using rule 10 (valor -> FLOAT .)
+    OR              reduce using rule 10 (valor -> FLOAT .)
+
+
+state 20
+
+    (11) valor -> BOOLEAN .
+
+    ENDLINE         reduce using rule 11 (valor -> BOOLEAN .)
+    RPAREN          reduce using rule 11 (valor -> BOOLEAN .)
+
+
+state 21
+
+    (12) valor -> STRING .
+
+    ENDLINE         reduce using rule 12 (valor -> STRING .)
+    RPAREN          reduce using rule 12 (valor -> STRING .)
+    AND             reduce using rule 12 (valor -> STRING .)
+    OR              reduce using rule 12 (valor -> STRING .)
+
+
+state 22
+
+    (13) valor -> VARIABLE .
+
+    ENDLINE         reduce using rule 13 (valor -> VARIABLE .)
+    RPAREN          reduce using rule 13 (valor -> VARIABLE .)
+    AND             reduce using rule 13 (valor -> VARIABLE .)
+    OR              reduce using rule 13 (valor -> VARIABLE .)
+
+
+state 23
+
+    (7) salida -> PRINT LPAREN . valor RPAREN
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    valor                          shift and go to state 33
+
+state 24
+
+    (15) asignacion -> VARIABLE operador_asignacion . valor ENDLINE
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    valor                          shift and go to state 34
+
+state 25
+
+    (16) operador_asignacion -> EQUAL .
+
+    ARGUMENTO       reduce using rule 16 (operador_asignacion -> EQUAL .)
+    INTEGER         reduce using rule 16 (operador_asignacion -> EQUAL .)
+    FLOAT           reduce using rule 16 (operador_asignacion -> EQUAL .)
+    BOOLEAN         reduce using rule 16 (operador_asignacion -> EQUAL .)
+    STRING          reduce using rule 16 (operador_asignacion -> EQUAL .)
+    VARIABLE        reduce using rule 16 (operador_asignacion -> EQUAL .)
+
+
+state 26
+
+    (17) operador_asignacion -> PLUS_EQUAL .
+
+    ARGUMENTO       reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+    INTEGER         reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+    FLOAT           reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+    BOOLEAN         reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+    STRING          reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+    VARIABLE        reduce using rule 17 (operador_asignacion -> PLUS_EQUAL .)
+
+
+state 27
+
+    (18) operador_asignacion -> CONCAT_EQUAL .
+
+    ARGUMENTO       reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+    INTEGER         reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+    FLOAT           reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+    BOOLEAN         reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+    STRING          reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+    VARIABLE        reduce using rule 18 (operador_asignacion -> CONCAT_EQUAL .)
+
+
+state 28
+
+    (14) funcion -> FUNCTION ARGUMENTO . LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+
+    LPAREN          shift and go to state 35
+
+
+state 29
+
+    (23) else -> if ELSE . LKEY cuerpo RKEY
+
+    LKEY            shift and go to state 36
+
+
+state 30
+
+    (22) if -> IF LPAREN . expresion_logica RPAREN LKEY cuerpo RKEY
+    (24) expresion_logica -> . BOOLEAN
+    (25) expresion_logica -> . valor AND valor
+    (26) expresion_logica -> . valor OR valor
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    BOOLEAN         shift and go to state 38
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    expresion_logica               shift and go to state 37
+    valor                          shift and go to state 39
+
+state 31
+
+    (27) while -> WHILE LPAREN . expresion_logica RPAREN
+    (24) expresion_logica -> . BOOLEAN
+    (25) expresion_logica -> . valor AND valor
+    (26) expresion_logica -> . valor OR valor
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    BOOLEAN         shift and go to state 38
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    expresion_logica               shift and go to state 40
+    valor                          shift and go to state 39
+
+state 32
+
+    (6) salida -> ECHO valor ENDLINE .
+
+    $end            reduce using rule 6 (salida -> ECHO valor ENDLINE .)
+    RKEY            reduce using rule 6 (salida -> ECHO valor ENDLINE .)
+
+
+state 33
+
+    (7) salida -> PRINT LPAREN valor . RPAREN
+
+    RPAREN          shift and go to state 41
+
+
+state 34
+
+    (15) asignacion -> VARIABLE operador_asignacion valor . ENDLINE
+
+    ENDLINE         shift and go to state 42
+
+
+state 35
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN . VARIABLE RPAREN LKEY ARGUMENTO RKEY
+
+    VARIABLE        shift and go to state 43
+
+
+state 36
+
+    (23) else -> if ELSE LKEY . cuerpo RKEY
+    (1) cuerpo -> . salida
+    (2) cuerpo -> . asignacion
+    (3) cuerpo -> . funcion
+    (4) cuerpo -> . estructuras_control
+    (5) cuerpo -> . bucles
+    (6) salida -> . ECHO valor ENDLINE
+    (7) salida -> . PRINT LPAREN valor RPAREN
+    (15) asignacion -> . VARIABLE operador_asignacion valor ENDLINE
+    (14) funcion -> . FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+    (19) estructuras_control -> . if
+    (20) estructuras_control -> . else
+    (21) bucles -> . while
+    (22) if -> . IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY
+    (23) else -> . if ELSE LKEY cuerpo RKEY
+    (27) while -> . WHILE LPAREN expresion_logica RPAREN
+
+    ECHO            shift and go to state 7
+    PRINT           shift and go to state 8
+    VARIABLE        shift and go to state 9
+    FUNCTION        shift and go to state 10
+    IF              shift and go to state 14
+    WHILE           shift and go to state 15
+
+    if                             shift and go to state 11
+    cuerpo                         shift and go to state 44
+    salida                         shift and go to state 2
+    asignacion                     shift and go to state 3
+    funcion                        shift and go to state 4
+    estructuras_control            shift and go to state 5
+    bucles                         shift and go to state 6
+    else                           shift and go to state 12
+    while                          shift and go to state 13
+
+state 37
+
+    (22) if -> IF LPAREN expresion_logica . RPAREN LKEY cuerpo RKEY
+
+    RPAREN          shift and go to state 45
+
+
+state 38
+
+    (24) expresion_logica -> BOOLEAN .
+    (11) valor -> BOOLEAN .
+
+    RPAREN          reduce using rule 24 (expresion_logica -> BOOLEAN .)
+    AND             reduce using rule 11 (valor -> BOOLEAN .)
+    OR              reduce using rule 11 (valor -> BOOLEAN .)
+
+
+state 39
+
+    (25) expresion_logica -> valor . AND valor
+    (26) expresion_logica -> valor . OR valor
+
+    AND             shift and go to state 46
+    OR              shift and go to state 47
+
+
+state 40
+
+    (27) while -> WHILE LPAREN expresion_logica . RPAREN
+
+    RPAREN          shift and go to state 48
+
+
+state 41
+
+    (7) salida -> PRINT LPAREN valor RPAREN .
+
+    $end            reduce using rule 7 (salida -> PRINT LPAREN valor RPAREN .)
+    RKEY            reduce using rule 7 (salida -> PRINT LPAREN valor RPAREN .)
+
+
+state 42
+
+    (15) asignacion -> VARIABLE operador_asignacion valor ENDLINE .
+
+    $end            reduce using rule 15 (asignacion -> VARIABLE operador_asignacion valor ENDLINE .)
+    RKEY            reduce using rule 15 (asignacion -> VARIABLE operador_asignacion valor ENDLINE .)
+
+
+state 43
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE . RPAREN LKEY ARGUMENTO RKEY
+
+    RPAREN          shift and go to state 49
+
+
+state 44
+
+    (23) else -> if ELSE LKEY cuerpo . RKEY
+
+    RKEY            shift and go to state 50
+
+
+state 45
+
+    (22) if -> IF LPAREN expresion_logica RPAREN . LKEY cuerpo RKEY
+
+    LKEY            shift and go to state 51
+
+
+state 46
+
+    (25) expresion_logica -> valor AND . valor
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    valor                          shift and go to state 52
+
+state 47
+
+    (26) expresion_logica -> valor OR . valor
+    (8) valor -> . ARGUMENTO
+    (9) valor -> . INTEGER
+    (10) valor -> . FLOAT
+    (11) valor -> . BOOLEAN
+    (12) valor -> . STRING
+    (13) valor -> . VARIABLE
+
+    ARGUMENTO       shift and go to state 17
+    INTEGER         shift and go to state 18
+    FLOAT           shift and go to state 19
+    BOOLEAN         shift and go to state 20
+    STRING          shift and go to state 21
+    VARIABLE        shift and go to state 22
+
+    valor                          shift and go to state 53
+
+state 48
+
+    (27) while -> WHILE LPAREN expresion_logica RPAREN .
+
+    $end            reduce using rule 27 (while -> WHILE LPAREN expresion_logica RPAREN .)
+    RKEY            reduce using rule 27 (while -> WHILE LPAREN expresion_logica RPAREN .)
+
+
+state 49
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN . LKEY ARGUMENTO RKEY
+
+    LKEY            shift and go to state 54
+
+
+state 50
+
+    (23) else -> if ELSE LKEY cuerpo RKEY .
+
+    $end            reduce using rule 23 (else -> if ELSE LKEY cuerpo RKEY .)
+    RKEY            reduce using rule 23 (else -> if ELSE LKEY cuerpo RKEY .)
+
+
+state 51
+
+    (22) if -> IF LPAREN expresion_logica RPAREN LKEY . cuerpo RKEY
+    (1) cuerpo -> . salida
+    (2) cuerpo -> . asignacion
+    (3) cuerpo -> . funcion
+    (4) cuerpo -> . estructuras_control
+    (5) cuerpo -> . bucles
+    (6) salida -> . ECHO valor ENDLINE
+    (7) salida -> . PRINT LPAREN valor RPAREN
+    (15) asignacion -> . VARIABLE operador_asignacion valor ENDLINE
+    (14) funcion -> . FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+    (19) estructuras_control -> . if
+    (20) estructuras_control -> . else
+    (21) bucles -> . while
+    (22) if -> . IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY
+    (23) else -> . if ELSE LKEY cuerpo RKEY
+    (27) while -> . WHILE LPAREN expresion_logica RPAREN
+
+    ECHO            shift and go to state 7
+    PRINT           shift and go to state 8
+    VARIABLE        shift and go to state 9
+    FUNCTION        shift and go to state 10
+    IF              shift and go to state 14
+    WHILE           shift and go to state 15
+
+    cuerpo                         shift and go to state 55
+    salida                         shift and go to state 2
+    asignacion                     shift and go to state 3
+    funcion                        shift and go to state 4
+    estructuras_control            shift and go to state 5
+    bucles                         shift and go to state 6
+    if                             shift and go to state 11
+    else                           shift and go to state 12
+    while                          shift and go to state 13
+
+state 52
+
+    (25) expresion_logica -> valor AND valor .
+
+    RPAREN          reduce using rule 25 (expresion_logica -> valor AND valor .)
+
+
+state 53
+
+    (26) expresion_logica -> valor OR valor .
+
+    RPAREN          reduce using rule 26 (expresion_logica -> valor OR valor .)
+
+
+state 54
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY . ARGUMENTO RKEY
+
+    ARGUMENTO       shift and go to state 56
+
+
+state 55
+
+    (22) if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo . RKEY
+
+    RKEY            shift and go to state 57
+
+
+state 56
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO . RKEY
+
+    RKEY            shift and go to state 58
+
+
+state 57
+
+    (22) if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY .
+
+    ELSE            reduce using rule 22 (if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY .)
+    $end            reduce using rule 22 (if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY .)
+    RKEY            reduce using rule 22 (if -> IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY .)
+
+
+state 58
+
+    (14) funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY .
+
+    $end            reduce using rule 14 (funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY .)
+    RKEY            reduce using rule 14 (funcion -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY .)
+

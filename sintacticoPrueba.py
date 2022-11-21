@@ -5,7 +5,8 @@ def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
   | funcion
-  | estructuras_control'''
+  | estructuras_control
+  | bucles'''
 
 def p_salida(p):
   "salida : ECHO valor ENDLINE"
@@ -35,6 +36,10 @@ def p_operador_asignacion(p):
 def p_estructuras_control(p):
   '''estructuras_control : if
   | else'''
+  
+def p_bucle(p):
+  'bucles : while'
+  
 
 def p_if(p):
   'if : IF LPAREN expresion_logica RPAREN LKEY cuerpo RKEY '
@@ -48,6 +53,9 @@ def p_expresion_logica(p):
   | valor AND valor
   | valor OR valor
   '''
+
+def p_while(p):
+  'while : WHILE LPAREN expresion_logica RPAREN COLON'
 
 def p_error(p):
   if p:
