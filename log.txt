@@ -1,0 +1,30 @@
+#Prueba para el bucle for
+for($i=1;$i<=11;$i++){$hola='Hola mundo';}
+
+#Prueba para salida por echo
+echo 'Hola Mundo xd';
+
+#Prueba para salida por print
+print(18);
+
+#Prueba para comparacion de variables
+$var1 >= $var2
+
+#Prueba para operadores logicos
+print(false & false);
+print(true || 4 == 3 );
+
+#Prueba para while
+while(true) : print("Test");
+while(true){ print("Test"); }
+
+#Prueba para operadores de asignacion
+$a += $b
+$a .= $b
+
+#Pruebas para funcion
+function foo($var1) {
+    $a = 24 >= 89;
+    print($a);
+}
+

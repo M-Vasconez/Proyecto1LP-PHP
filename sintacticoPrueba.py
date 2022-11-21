@@ -4,7 +4,7 @@ import ply.yacc as yacc
 def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
-  | funcion
+  | function
   | estructuras_control'''
 
 #Bryan Segovia
@@ -26,8 +26,8 @@ def p_valor(p):
   | estructuras_datos
   | funciones'''
 
-def p_funcion(p):
-  'funcion : FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY'
+def p_function(p):
+  'function : FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY'
 
 def p_asignacion(p):
   'asignacion : VARIABLE operador_asignacion valor ENDLINE'
