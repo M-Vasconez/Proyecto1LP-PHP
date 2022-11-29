@@ -1,6 +1,20 @@
 from lexico import tokens
 import ply.yacc as yacc
 
+class Expr: pass
+ 
+class AritmeticOp(Expr):
+  def __init__(self,left,op,right):
+    self.type = "aritmeticop"
+    self.left = left
+    self.right = right
+    self.op = op
+ 
+class Number(Expr):
+  def __init__(self,value):
+    self.type = "number"
+    self.value = value
+
 def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
@@ -18,8 +32,7 @@ def p_salida_print(p):
 
 def p_valor(p):
   '''valor : ARGUMENTO 
-  | INTEGER 
-  | FLOAT 
+  | number 
   | BOOLEAN
   | STRING
   | VARIABLE
@@ -64,36 +77,19 @@ def p_estructuras_control(p):
    
 
 def p_if(p):
-  'if : IF LPAREN expresiones_logicas RPAREN LKEY cuerpo RKEY '
+  'if : IF LPAREN expresion RPAREN LKEY cuerpo RKEY '
 
 def p_else(p):
   'else : if ELSE LKEY cuerpo RKEY'
 
 def p_expresion(p):
   '''expresion : expresiones_logicas 
-  | expresiones_aritmeticas
-  '''
-
-
-def p_expresion_logica(p):
-  '''expresion_logica : BOOLEAN
-  | valor operador_comparacion valor
-  | valor operador_logico valor
+  | expresion_aritmetica
   '''
 
 def p_expresiones_logicas(p):
-  '''expresiones_logicas : expresion_logica 
-  | expresion_logica operador_comparacion expresiones_logicas
-  '''
-
-
-def p_operador_aritmetico(p):
-  '''operador_aritmetico : ADDITION
-  | SUBTRACTION
-  | MULTIPLICATION
-  | DIVISION
-  | MODULO
-  | EXPONENTIATION
+  '''expresiones_logicas : valor
+  | valor operador expresiones_logicas
   '''
 
 def p_operador_logico(p):
@@ -104,14 +100,32 @@ def p_operador_logico(p):
   | XOR 
   '''
 
-def p_expresion_aritmetica(p):
-  'expresion_aritmetica : valor operador_aritmetico valor'
+def p_operador(p):
+  '''operador : operador_logico 
+  | operador_comparacion'''
+
+def p_number(p):
+  '''number : INTEGER 
+  | FLOAT'''
   
 
-def p_expresiones_aritmeticas(p):
-  '''expresiones_aritmeticas : expresion_aritmetica 
-  | expresion_aritmetica operador_aritmetico expresiones_aritmeticas
+def p_operador_aritmetico(p):
+  '''operador_aritmetico : ADDITION
+  | SUBTRACTION
+  | MULTIPLICATION
+  | DIVISION
+  | MODULO
+  | EXPONENTIATION
   '''
+
+def p_expresion_aritmetica(p):
+  '''expresion_aritmetica : number
+  | number operador_aritmetico expresion_aritmetica
+  '''
+  if (len(p)==4):
+    p[0] = AritmeticOp(p[1], p[2], p[3])
+  else:
+    p[0] = Number(p[1])
 
 def p_lectura(p):
   'lectura : FSCANF LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
