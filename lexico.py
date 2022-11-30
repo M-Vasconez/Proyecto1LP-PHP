@@ -9,7 +9,7 @@ reserved = {
   'xor':'XOR',
   'SplFixedArray':'SPLFIXEDARRAY', 
   'setSize':'SETSIZE', 
-  'SpleDoublyLinkedList': 'SPLEDOUBLYLINKEDLIST', 
+  'SplQueue': 'SPLQUEUE', 
   'push': 'PUSH', 
   'new': 'NEW' ,
   'echo':'ECHO',
@@ -17,6 +17,8 @@ reserved = {
   'fgets':'FGETS',
   'fscanf':'FSCANF',
   'readline': 'READLINE',
+  'push': 'PUSH',
+  'pop': 'POP',
   #Bryan Segovia
   'if':'IF',
   'else':'ELSE',
@@ -49,6 +51,7 @@ tokens = (
   'OPEN_TAG',
   'CLOSE_TAG',
   'COMA',
+  'ARROW',
   #Matias Vasconez
   'IS_EQUAL',
   'IS_GREATER_OR_EQUAL',
@@ -99,7 +102,6 @@ t_LKEY = r'\{'
 t_RKEY = r'\}'
 t_SPLFIXEDARRAY = r'SplFixedArray'
 t_SETSIZE = r'setSize'
-t_SPLEDOUBLYLINKEDLIST = r'SpleDoublyLinkedList'
 t_PUSH = r'push'
 t_NEW = r'new'
 t_ENDLINE = r';'
@@ -108,6 +110,7 @@ t_RBRACKET = r'\]'
 t_OPEN_TAG = r'<\?php'
 t_CLOSE_TAG = r'\?>'
 t_COMA = r','
+t_ARROW = r'->'
 #Matias Vasconez
 t_IS_EQUAL = r'=='
 t_IS_GREATER_OR_EQUAL = r'>='

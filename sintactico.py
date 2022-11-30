@@ -15,12 +15,22 @@ class Number(Expr):
     self.type = "number"
     self.value = value
 
+class Queue(Expr):
+  def __init__(self,value):
+    self.type = "queue"
+    self.value = value
+
 def p_cuerpo(p):
   '''cuerpo : salida 
-  | asignacion 
+  | salida cuerpo
+  | asignacion
+  | asignacion cuerpo 
   | function
+  | function cuerpo
   | estructuras_control
-  | cuerpo'''
+  | estructuras_control cuerpo
+  | metodos
+  | metodos cuerpo'''
 
 #Bryan Segovia
 def p_salida(p):
@@ -49,13 +59,35 @@ def p_asignacion(p):
 def p_asignacion_expresion(p):
   'asignacion : VARIABLE operador_asignacion expresion ENDLINE'
 
+def p_asignacion_queue(p):
+  'asignacion : queue_variable operador_asignacion queue ENDLINE'
+
+def p_queue(p):
+  'queue : NEW SPLQUEUE LPAREN RPAREN'
+
+# Regla semantica pincay
+def p_queue_variable(p):
+  'queue_variable : VARIABLE'
+  p[0] = Queue(p[1])
+
+def p_push(p):
+  'push : queue_variable ARROW PUSH LPAREN valor RPAREN ENDLINE'
+
+def p_pop(p):
+  'pop : queue_variable ARROW POP LPAREN RPAREN ENDLINE'
+
+def p_metodos(p):
+  '''metodos : push
+  | pop'''
+
 def p_operador_asignacion(p):
   '''operador_asignacion : EQUAL
   | PLUS_EQUAL
   | CONCAT_EQUAL'''
   
 def p_estructuras_datos(p):
-  'estructuras_datos : array'
+  '''estructuras_datos : array
+  | queue'''
 
 def p_operador_comparacion(p):
   '''operador_comparacion : IS_EQUAL
@@ -119,7 +151,7 @@ def p_operador_aritmetico(p):
   | MODULO
   | EXPONENTIATION
   '''
-
+# Regla semantica pincay
 def p_expresion_aritmetica(p):
   '''expresion_aritmetica : number
   | number operador_aritmetico expresion_aritmetica
