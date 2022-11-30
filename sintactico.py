@@ -1,4 +1,5 @@
 from lexico import tokens
+import re
 import ply.yacc as yacc
 
 class Expr: pass
@@ -20,6 +21,11 @@ class Queue(Expr):
     self.type = "queue"
     self.value = value
 
+class Archivo(Expr):
+  def __init__(self,value):
+    self.type = "archivo"
+    self.value = value 
+
 def p_cuerpo(p):
   '''cuerpo : salida 
   | salida cuerpo
@@ -30,7 +36,9 @@ def p_cuerpo(p):
   | estructuras_control
   | estructuras_control cuerpo
   | metodos
-  | metodos cuerpo'''
+  | metodos cuerpo
+  | abrir_archivo
+  | lectura_archivo'''
 
 #Bryan Segovia
 def p_salida(p):
@@ -45,10 +53,23 @@ def p_valor(p):
   '''valor : ARGUMENTO 
   | number 
   | BOOLEAN
-  | STRING
+  | string
   | VARIABLE
   | estructuras_datos
-  | funciones'''
+  | funciones
+  | valor'''
+
+#Matias Vasconez
+def p_string(p):
+  '''string : STRING
+  | COMILLA_DOBLE STRING COMILLA_DOBLE
+  | COMILLA_SIMPLE STRING COMILLA_SIMPLE'''
+  if p[1] == '\'':
+    p[0] = p[2]
+  elif p[1] == '\"':
+    p[0] = p[2]
+  else:
+    p[0] = p[1]
 
 def p_function(p):
   'function : FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY'
@@ -161,15 +182,26 @@ def p_expresion_aritmetica(p):
   else:
     p[0] = Number(p[1])
 
+# Regla semantica Vasconez
+def p_abrir_archivo(p):
+  '''abrir_archivo : FOPEN LPAREN string RPAREN
+  | FOPEN LPAREN string RPAREN ENDLINE'''
+  if re.search("[a-zA-Z0-9]*\.txt|[a-zA-Z0-9]*\.csv",p[3]) != None:
+    p[0] = p[3]
+  else:
+    print('formato no valido')
+    
+def p_lectura_archivo(p):
+  'lectura_archivo : FGETS LPAREN abrir_archivo RPAREN ENDLINE'
+
 def p_lectura(p):
   'lectura : FSCANF LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
 
 def p_lectura(p):
   'lectura : FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
 
-def p_lectura(p):
-  'lectura : FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
 
+#Matias Vasconez-sintactico
 def p_while_v1(p):
   'while : WHILE LPAREN valor operador_comparacion valor RPAREN COLON cuerpo'
   
@@ -177,7 +209,11 @@ def p_while_v2(p):
   'while : WHILE LPAREN valor operador_comparacion valor RPAREN LKEY TAB_VERTICAL cuerpo RKEY'
 
 def p_array(p):
-  'array : LBRACKET valor RBRACKET'
+  'array : LBRACKET valorArreglo RBRACKET ENDLINE'
+
+def p_valorArreglo(p):
+  '''valorArreglo : valor COMA valorArreglo
+  | valor'''
   
 def p_funciones(p):
   'funciones : valor LPAREN valor RPAREN LKEY cuerpo RKEY'
@@ -220,6 +256,8 @@ def validaRegla(s):
   result = parser.parse(s)
   print(result)
 
+  
+
 while True:
   try:
     s = input('calc > ')
@@ -227,3 +265,18 @@ while True:
     break
   if not s: continue
   validaRegla(s)
+
+
+
+
+# def getSintaxis(parser):
+#   for tok in parser:
+#     print(tok)
+
+# archivo = open("log.txt")
+# s = input(archivo.read())
+
+# while True:
+#   validaRegla(s)
+#   if EOFError:
+#     break

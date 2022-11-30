@@ -1,5 +1,0 @@
-function foo($var1){
-  24>=89;
-  $local.$var1;
-  echo "Funcion ejemplo";
-}

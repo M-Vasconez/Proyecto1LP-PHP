@@ -15,6 +15,7 @@ reserved = {
   'echo':'ECHO',
   'print':'PRINT',
   'fgets':'FGETS',
+  'fopen':'FOPEN',
   'fscanf':'FSCANF',
   'readline': 'READLINE',
   'push': 'PUSH',
@@ -72,12 +73,14 @@ tokens = (
   'TAB_VERTICAL',
   'ESCAPE',
   'ADVANCE_PAGE',
+  'ARRAY',
   #Bryan Segovia
   'OPERADOR_DECREMENTO',
   'SINTAXIS_ARRAY',
   'OPERADOR_INCREMENTO',
   'OPERADOR_CONCATENACION',
   'COMILLA_DOBLE',
+  'COMILLA_SIMPLE',
   'ARGUMENTO'
 )+tuple(reserved.values())
 
@@ -102,6 +105,7 @@ t_LKEY = r'\{'
 t_RKEY = r'\}'
 t_SPLFIXEDARRAY = r'SplFixedArray'
 t_SETSIZE = r'setSize'
+t_ARRAY = r'array'
 t_PUSH = r'push'
 t_NEW = r'new'
 t_ENDLINE = r';'
@@ -119,8 +123,6 @@ t_IS_SMALLER_OR_EQUAL = r'<='
 t_IS_GREATER= r'>'
 t_IS_SMALLER = r'<'
 t_COLON = r'\:'
-t_IDENTITY=r'\+$.'
-t_NEGATION=r'-$.'
 t_ADDITION=r'\+'
 t_SUBTRACTION = r'-'
 t_MULTIPLICATION = r'\*'
@@ -142,6 +144,7 @@ t_SINTAXIS_ARRAY = r'=>'
 t_OPERADOR_INCREMENTO = r'\+\+'
 t_OPERADOR_CONCATENACION = r'\.'
 t_COMILLA_DOBLE= r'"'
+t_COMILLA_SIMPLE= r'\''
 
 #Bryan Segovia
 def t_ARGUMENTO(t):
@@ -180,8 +183,8 @@ lexer = lex.lex()
 #   for tok in lexer:
 #     print(tok)
 
-# script = open("algoritmo_Vasconez.txt")
-# lexer.input(script.read())
+# archivo = open("algoritmo.txt")
+# lexer.input(archivo.read())
 
 # while True:
 #   tok = lexer.token()

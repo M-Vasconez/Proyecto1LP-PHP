@@ -1,5 +1,8 @@
+#Fecha 29/11/2022 
 #Prueba para el bucle for
-for($i=1;$i<=11;$i++){$hola='Hola mundo';}
+for($i=1;$i<=11;$i++){
+    $hola='Hola mundo';
+}
 
 #Prueba para salida por echo
 echo 'Hola Mundo xd';
@@ -11,7 +14,7 @@ print(18);
 $var1 >= $var2
 
 #Prueba para operadores logicos
-print(false & false);
+print(false && false);
 print(true || 4 == 3 );
 
 #Prueba para while
@@ -28,3 +31,6 @@ function foo($var1) {
     print($a);
 }
 
+#Output
+Error de sintaxis Fin de Linea
+None
