@@ -1,0 +1,251 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADVANCE_PAGE
+    CLOSE_TAG
+    COMILLA_DOBLE
+    ESCAPE
+    FSCANF
+    IDENTITY
+    NEGATION
+    NEW
+    NOT
+    NULL
+    OPEN_TAG
+    OPERADOR_CONCATENACION
+    PUSH
+    READLINE
+    SETSIZE
+    SINTAXIS_ARRAY
+    SPLEDOUBLYLINKEDLIST
+    SPLFIXEDARRAY
+    WHITESPACE
+
+Grammar
+
+Rule 0     S' -> cuerpo
+Rule 1     cuerpo -> salida
+Rule 2     cuerpo -> asignacion
+Rule 3     cuerpo -> function
+Rule 4     cuerpo -> estructuras_control
+Rule 5     cuerpo -> cuerpo
+Rule 6     salida -> ECHO valor ENDLINE
+Rule 7     salida -> PRINT LPAREN valor RPAREN ENDLINE
+Rule 8     valor -> ARGUMENTO
+Rule 9     valor -> INTEGER
+Rule 10    valor -> FLOAT
+Rule 11    valor -> BOOLEAN
+Rule 12    valor -> STRING
+Rule 13    valor -> VARIABLE
+Rule 14    valor -> estructuras_datos
+Rule 15    valor -> funciones
+Rule 16    function -> FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+Rule 17    asignacion -> VARIABLE operador_asignacion valor ENDLINE
+Rule 18    asignacion -> VARIABLE operador_asignacion expresion ENDLINE
+Rule 19    operador_asignacion -> EQUAL
+Rule 20    operador_asignacion -> PLUS_EQUAL
+Rule 21    operador_asignacion -> CONCAT_EQUAL
+Rule 22    estructuras_datos -> array
+Rule 23    operador_comparacion -> IS_EQUAL
+Rule 24    operador_comparacion -> IS_GREATER_OR_EQUAL
+Rule 25    operador_comparacion -> IS_NOT_EQUAL
+Rule 26    operador_comparacion -> IS_SMALLER_OR_EQUAL
+Rule 27    operador_comparacion -> IS_GREATER
+Rule 28    operador_comparacion -> IS_SMALLER
+Rule 29    operacion_comparacion -> VARIABLE operador_comparacion VARIABLE
+Rule 30    estructuras_control -> if
+Rule 31    estructuras_control -> else
+Rule 32    estructuras_control -> while
+Rule 33    estructuras_control -> for
+Rule 34    estructuras_control -> estructuras_control
+Rule 35    if -> IF LPAREN expresiones_logicas RPAREN LKEY cuerpo RKEY
+Rule 36    if -> if
+Rule 37    else -> if ELSE LKEY cuerpo RKEY
+Rule 38    expresion -> expresiones_logicas
+Rule 39    expresion -> expresiones_aritmeticas
+Rule 40    expresion_logica -> BOOLEAN
+Rule 41    expresion_logica -> valor operador_comparacion valor
+Rule 42    expresion_logica -> valor operador_logico valor
+Rule 43    expresiones_logicas -> expresion_logica
+Rule 44    expresiones_logicas -> expresion_logica operador_comparacion expresiones_logicas
+Rule 45    operador_aritmetico -> ADDITION
+Rule 46    operador_aritmetico -> SUBTRACTION
+Rule 47    operador_aritmetico -> MULTIPLICATION
+Rule 48    operador_aritmetico -> DIVISION
+Rule 49    operador_aritmetico -> MODULO
+Rule 50    operador_aritmetico -> EXPONENTIATION
+Rule 51    operador_logico -> BOOLEAN_AND
+Rule 52    operador_logico -> BOOLEAN_OR
+Rule 53    operador_logico -> AND
+Rule 54    operador_logico -> OR
+Rule 55    operador_logico -> XOR
+Rule 56    expresion_aritmetica -> valor operador_aritmetico valor
+Rule 57    expresiones_aritmeticas -> expresion_aritmetica
+Rule 58    expresiones_aritmeticas -> expresion_aritmetica operador_aritmetico expresiones_aritmeticas
+Rule 59    lectura -> FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE
+Rule 60    while -> WHILE LPAREN valor operador_comparacion valor RPAREN COLON cuerpo
+Rule 61    while -> WHILE LPAREN valor operador_comparacion valor RPAREN LKEY TAB_VERTICAL cuerpo RKEY
+Rule 62    array -> LBRACKET valor RBRACKET
+Rule 63    funciones -> valor LPAREN valor RPAREN LKEY cuerpo RKEY
+Rule 64    tipo_operador -> ADDITION
+Rule 65    tipo_operador -> SUBTRACTION
+Rule 66    tipo_operador -> MULTIPLICATION
+Rule 67    tipo_operador -> DIVISION
+Rule 68    tipo_operador -> MODULO
+Rule 69    tipo_operador -> EXPONENTIATION
+Rule 70    forma_operacion -> VARIABLE OPERADOR_INCREMENTO
+Rule 71    forma_operacion -> OPERADOR_INCREMENTO VARIABLE
+Rule 72    forma_operacion -> VARIABLE OPERADOR_DECREMENTO
+Rule 73    forma_operacion -> OPERADOR_DECREMENTO VARIABLE
+Rule 74    forma_operacion -> VARIABLE EQUAL VARIABLE tipo_operador INTEGER
+Rule 75    for -> FOR LPAREN VARIABLE EQUAL INTEGER ENDLINE VARIABLE operador_comparacion INTEGER ENDLINE forma_operacion RPAREN LKEY cuerpo RKEY
+
+Terminals, with rules where they appear
+
+ADDITION             : 45 64
+ADVANCE_PAGE         : 
+AND                  : 53
+ARGUMENTO            : 8 16 16
+BOOLEAN              : 11 40
+BOOLEAN_AND          : 51
+BOOLEAN_OR           : 52
+CLOSE_TAG            : 
+COLON                : 60
+COMA                 : 59
+COMILLA_DOBLE        : 
+CONCAT_EQUAL         : 21
+DIVISION             : 48 67
+ECHO                 : 6
+ELSE                 : 37
+ENDLINE              : 6 7 17 18 59 75 75
+EQUAL                : 19 74 75
+ESCAPE               : 
+EXPONENTIATION       : 50 69
+FGETS                : 59
+FLOAT                : 10
+FOR                  : 75
+FSCANF               : 
+FUNCTION             : 16
+IDENTITY             : 
+IF                   : 35
+INTEGER              : 9 59 74 75 75
+IS_EQUAL             : 23
+IS_GREATER           : 27
+IS_GREATER_OR_EQUAL  : 24
+IS_NOT_EQUAL         : 25
+IS_SMALLER           : 28
+IS_SMALLER_OR_EQUAL  : 26
+LBRACKET             : 62
+LKEY                 : 16 35 37 61 63 75
+LPAREN               : 7 16 35 59 60 61 63 75
+MODULO               : 49 68
+MULTIPLICATION       : 47 66
+NEGATION             : 
+NEW                  : 
+NOT                  : 
+NULL                 : 
+OPEN_TAG             : 
+OPERADOR_CONCATENACION : 
+OPERADOR_DECREMENTO  : 72 73
+OPERADOR_INCREMENTO  : 70 71
+OR                   : 54
+PLUS_EQUAL           : 20
+PRINT                : 7
+PUSH                 : 
+RBRACKET             : 62
+READLINE             : 
+RKEY                 : 16 35 37 61 63 75
+RPAREN               : 7 16 35 59 60 61 63 75
+SETSIZE              : 
+SINTAXIS_ARRAY       : 
+SPLEDOUBLYLINKEDLIST : 
+SPLFIXEDARRAY        : 
+STRING               : 12
+SUBTRACTION          : 46 65
+TAB_VERTICAL         : 61
+VARIABLE             : 13 16 17 18 29 29 59 70 71 72 73 74 74 75 75
+WHILE                : 60 61
+WHITESPACE           : 
+XOR                  : 55
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 22
+asignacion           : 2
+cuerpo               : 5 35 37 60 61 63 75 0
+else                 : 31
+estructuras_control  : 4 34
+estructuras_datos    : 14
+expresion            : 18
+expresion_aritmetica : 57 58
+expresion_logica     : 43 44
+expresiones_aritmeticas : 39 58
+expresiones_logicas  : 35 38 44
+for                  : 33
+forma_operacion      : 75
+funciones            : 15
+function             : 3
+if                   : 30 36 37
+lectura              : 
+operacion_comparacion : 
+operador_aritmetico  : 56 58
+operador_asignacion  : 17 18
+operador_comparacion : 29 41 44 60 61 75
+operador_logico      : 42
+salida               : 1
+tipo_operador        : 74
+valor                : 6 7 17 41 41 42 42 56 56 60 60 61 61 62 63 63
+while                : 32
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . cuerpo
+    (1) cuerpo -> . salida
+    (2) cuerpo -> . asignacion
+    (3) cuerpo -> . function
+    (4) cuerpo -> . estructuras_control
+    (5) cuerpo -> . cuerpo
+    (6) salida -> . ECHO valor ENDLINE
+    (7) salida -> . PRINT LPAREN valor RPAREN ENDLINE
+    (17) asignacion -> . VARIABLE operador_asignacion valor ENDLINE
+    (18) asignacion -> . VARIABLE operador_asignacion expresion ENDLINE
+    (16) function -> . FUNCTION ARGUMENTO LPAREN VARIABLE RPAREN LKEY ARGUMENTO RKEY
+    (30) estructuras_control -> . if
+    (31) estructuras_control -> . else
+    (32) estructuras_control -> . while
+    (33) estructuras_control -> . for
+    (34) estructuras_control -> . estructuras_control
+    (35) if -> . IF LPAREN expresiones_logicas RPAREN LKEY cuerpo RKEY
+    (36) if -> . if
+    (37) else -> . if ELSE LKEY cuerpo RKEY
+    (60) while -> . WHILE LPAREN valor operador_comparacion valor RPAREN COLON cuerpo
+    (61) while -> . WHILE LPAREN valor operador_comparacion valor RPAREN LKEY TAB_VERTICAL cuerpo RKEY
+    (75) for -> . FOR LPAREN VARIABLE EQUAL INTEGER ENDLINE VARIABLE operador_comparacion INTEGER ENDLINE forma_operacion RPAREN LKEY cuerpo RKEY
+
+    ECHO            shift and go to state 6
+    PRINT           shift and go to state 7
+    VARIABLE        shift and go to state 8
+    FUNCTION        shift and go to state 9
+    IF              shift and go to state 14
+    WHILE           shift and go to state 15
+    FOR             shift and go to state 16
+
+    cuerpo                         shift and go to state 1
+    salida                         shift and go to state 2
+    asignacion                     shift and go to state 3
+    function                       shift and go to state 4
+    estructuras_control            shift and go to state 5
+    if                             shift and go to state 10
+    else                           shift and go to state 11
+    while                          shift and go to state 12
+    for                            shift and go to state 13
+
+state 1
+
+    (0) S' -> cuerpo .
+    (5) cuerpo -> cuerpo .
+

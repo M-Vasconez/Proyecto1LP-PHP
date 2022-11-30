@@ -19,7 +19,8 @@ def p_cuerpo(p):
   '''cuerpo : salida 
   | asignacion 
   | function
-  | estructuras_control'''
+  | estructuras_control
+  | cuerpo'''
 
 #Bryan Segovia
 def p_salida(p):
