@@ -74,7 +74,8 @@ def p_estructuras_control(p):
   '''estructuras_control : if
   | else 
   | while 
-  | for'''
+  | for
+  | estructuras_control'''
    
 
 def p_if(p):
