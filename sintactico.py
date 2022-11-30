@@ -40,6 +40,7 @@ def p_cuerpo(p):
   | function cuerpo
   | estructuras_control
   | estructuras_control cuerpo
+  | estructuras_datos
   | metodos
   | metodos cuerpo
   | abrir_archivo
@@ -105,7 +106,7 @@ def p_splfixedarray(p):
 
 #Regla Semantica Segovia
 def p_splfixedarray_variable(p):
-  'splefixedarray : VARIABLE'
+  'splfixedarray_variable : VARIABLE'
   p[0] = SplFixedArray(p[1])
 
 def p_push(p):
@@ -212,12 +213,11 @@ def p_abrir_archivo(p):
 def p_lectura_archivo(p):
   'lectura_archivo : FGETS LPAREN abrir_archivo RPAREN ENDLINE'
 
-def p_lectura(p):
-  'lectura : FSCANF LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
-
-def p_lectura(p):
-  'lectura : FGETS LPAREN VARIABLE COMA INTEGER RPAREN ENDLINE '
-
+def p_lectura_archivo(p):
+  'lectura_archivo : FSCANF LPAREN abrir_archivo COMA string RPAREN ENDLINE '
+  if p[5] != '%s' or p[5] !='%d' :
+    print('Formato no valido')
+    
 
 #Matias Vasconez-sintactico
 def p_while_v1(p):
@@ -227,7 +227,7 @@ def p_while_v2(p):
   'while : WHILE LPAREN valor operador_comparacion valor RPAREN LKEY TAB_VERTICAL cuerpo RKEY'
 
 def p_array(p):
-  'array : LBRACKET valorArreglo RBRACKET ENDLINE'
+  'array : LPAREN valorArreglo RPAREN ENDLINE'
 
 def p_valorArreglo(p):
   '''valorArreglo : valor COMA valorArreglo
