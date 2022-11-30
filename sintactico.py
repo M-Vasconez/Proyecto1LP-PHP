@@ -19,6 +19,11 @@ class Queue(Expr):
   def __init__(self,value):
     self.type = "queue"
     self.value = value
+   
+class SplFixedArray(Expr):
+  def __init__(self,value):
+    self.type = "splfixedarray"
+    self.value = value
 
 def p_cuerpo(p):
   '''cuerpo : salida 
@@ -69,6 +74,18 @@ def p_queue(p):
 def p_queue_variable(p):
   'queue_variable : VARIABLE'
   p[0] = Queue(p[1])
+  
+#SplFixedArray
+def p_asignacion_splfixedarray(p):
+  'asignacion : splfixedarray_variable operador_asignacion splfixedarray ENDLINE'
+
+def p_splfixedarray(p):
+  'splfixedarray : NEW SPLFIXEDARRAY LPAREN INTEGER RPAREN'
+
+#Regla Semantica Segovia
+def p_splfixedarray_variable(p):
+  'splefixedarray : VARIABLE'
+  p[0] = SplFixedArray(p[1])
 
 def p_push(p):
   'push : queue_variable ARROW PUSH LPAREN valor RPAREN ENDLINE'
@@ -87,7 +104,8 @@ def p_operador_asignacion(p):
   
 def p_estructuras_datos(p):
   '''estructuras_datos : array
-  | queue'''
+  | queue
+  | splfixedarray'''
 
 def p_operador_comparacion(p):
   '''operador_comparacion : IS_EQUAL
